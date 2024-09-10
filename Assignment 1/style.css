@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+article {
+    color: #3f3535;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+}
+
+article > p {
+    line-height: 150%;
+    margin: 0 2em;
+}
+
+article > p::first-letter
+{
+    initial-letter: 2;
+    padding-right: .3em;
+}
+
+body {
+    font-family: 'Lora', 'Georgia', serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+em.article-omitted {
+    display: block;
+    font-style: italic;
+    margin-left: 2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+footer > p {
+    float: right;
+}
+
+section.article-title > h2 {
+    border-bottom: .05em solid #CCC;
+    color: #000;
+    font-weight: 500;
+    margin-bottom: .2em;
+    padding-bottom: .2em;
+}
+
+section.article-title > p.article-author-name {
+    color: #444;
+    margin-top: 0;
+    font-style: italic;
+}
+
+section.article-title > p.article-author-name > time::after {
+    content: '·';
+    text-align: center;
+    padding: 0 .3em;
+}
+
+section.header {
+    margin-left: 1.5em;
+}
+
+section.header > h1 {
+    font-size: 180%;
+    margin-bottom: 0em;
+}
+
+section.header > p {
+    margin-top: .4em;
+}
