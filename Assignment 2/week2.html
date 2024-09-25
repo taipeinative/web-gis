@@ -8,56 +8,72 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-         <!-- Stylesheet -->
-         <link rel="stylesheet" type="text/css" href="style.css" />
-
-        <!-- JavaScript-->
-        <script type="text/javascript" src="script.js"></script>
-
+        <!-- Stylesheet -->
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <style>
+            html {font-family: 'Inria Sans', 'Segoe UI', '-apple-system', 'BlinkMacSystemFont', 'Roboto', 'Ubuntu', sans-serif;}
+        </style>
     </head>
     <body>
         <div class="page-container">
             <div class="header-block"></div>
             <section class="header">
                 <img src="..\src\profile.png" alt = "Profile picture" />
+                <p class="invisible">❓</p>
                 <h1>Ho, Chang-Yu</h1>
             </section>
             <nav class="navbar">
                 <h2 class = "heading">Contact</h2>
                 <ul>
-                    <li><a href = 'https://x.com/taipei_native', title = 'Twitter (X)'>Twitter (X)</a></li>
+                    <li><a href = 'mailto:4alpelna4lve@gmail.com', title = 'Email'>Email</a></li>
                     <li><a href = 'https://github.com/taipeinative', title = 'GitHub'>GitHub</a></li>
+                    <li><a href = 'https://www.openstreetmap.org/user/Taipei%20Native', title = 'OpenStreetMap'>OSM</a></li>
+                    <li><a href = 'https://x.com/taipei_native', title = 'Twitter (X)'>Twitter (X)</a></li>
+                    <li><a href = 'https://zh.wikipedia.org/wiki/User:台北人', title = 'Wikipedia'>Wikipedia</a></li>
                 </ul>
             </nav>
             <section class="content-container">
                 <article class="bio">
                     <h2 class="heading">Bio</h2>
-                    <p class="bio-paragraph">Lorem ipsum...</p>
+                    <p class="bio-paragraph">My name is Chang-Yu Ho (Chinese: <span lang="zh-TW" style="font-family: 'Microsoft JhengHei UI', 'PingFang TC', 'SimHei', sans-serif;">何長祐</span>) and I am currently a student of Department of Geography of National Taiwan University, Taiwan. My interests in geography include infrastructure, spatial analysis, transportation, and urban planning.</p>
                 </article>
-                <h2 class="heading">Post</h2>
+                <h2 class="heading">Project</h2>
                 <div class="post-container">
-                    <article class="post">
-                        <div class="post-img"></div>
+                    <article class="post"
+                             onclick="location.href='https://github.com/taipei-native/Carto'"
+                             onkeydown="if(event.key == 'Enter' || event.key == ' ') { location.href='https://github.com/taipei-native/Carto'; }"
+                             tabindex="0">
+                        <div class="post-img carto"></div>
                         <div class="post-text">
-                            <h3>Post 1</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                            <h3>Carto</h3>
+                            <p>A Cities: Skylines II mod which converts in-game objects to geospatial data.</p>
                         </div>
                     </article>
-                    <article class="post">
-                        <div class="post-img"></div>
+                    <article class="post"
+                             onclick="location.href='https://hackmd.io/@Taipei-Native/power-substations'"
+                             onkeydown="if(event.key == 'Enter' || event.key == ' ') { location.href='https://hackmd.io/@Taipei-Native/power-substations'; }"
+                             tabindex="0">
+                        <div class="post-img power"></div>
                         <div class="post-text">
-                            <h3>Post 2</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                            <h3>Taipower Infrastructure</h3>
+                            <p>Gathering Taiwan’s power grid information through government tender titles.</p>
                         </div>
                     </article>
-                    <article class="post">
-                        <div class="post-img"></div>
+                    <article class="post"
+                             onclick="location.href='https://www.openstreetmap.org/user/Taipei%20Native'"
+                             onkeydown="if(event.key == 'Enter' || event.key == ' ') { location.href='https://www.openstreetmap.org/user/Taipei%20Native'; }"
+                             tabindex="0">
+                        <div class="post-img osm"></div>
                         <div class="post-text">
-                            <h3>Post 3</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                            <h3>OpenStreetMap Participation</h3>
+                            <p>Irregularly updating the power grid data to OpenStreetMap.</p>
                         </div>
                     </article>
                 </div>
+                <article class="language">
+                    <h2 class="heading">Language</h2>
+                    <p class="lang-paragraph">I can understand Chinese and English. Aside from speak languages, I can use following programming languages/markups: C#, CSS, HTML, JavaScript, Python, R & SQL.</p>
+                </article>
             </section>
         </div>
         <section class="footer">
