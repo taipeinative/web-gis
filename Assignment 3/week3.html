@@ -17,7 +17,28 @@
     <body>
         <h1>Currency Converter</h1>
         <p>The currency converter between New Taiwan Dollar and several notable currencies.</p>
-        <div id="currency1" class="currency-dropdown"></div>
-        <div id="currency2" class="currency-dropdown"></div>
+        <nav>
+            <ul>
+                <li><button id="swap" title="Swap currency type">Swap Currency</button></li>
+                <li><button id="copy" title="Copy converted value">Copy Result</button></li>
+            </ul>
+        </nav>
+        <section class="converter">
+            <input
+                type="text"
+                inputmode="numeric"
+                pattern="\d+(?:\.\d+|$)"
+                placeholder="Enter numeric value"
+                translate="no"
+                value="100"
+            />
+            <div id="currency1" class="currency-dropdown"></div>
+            <div class="equals">=</div>
+            <p translate="no">0</p>
+            <div id="currency2" class="currency-dropdown"></div>
+        </section>
+        <footer>
+            <p>Source: <a href="https://data.gov.tw/dataset/31897">Central Bank, Taiwan on data.gov.tw</a>.<br />Data update time: <span id="time">unknown</span></p>
+        </footer>
     </body>
 </html>
