@@ -36,10 +36,18 @@ footer > p {
     margin: 0;
 }
 
+html {
+    font-family: 'Inria Sans', 'Segoe UI', '-apple-system', 'BlinkMacSystemFont', 'Roboto', 'Ubuntu', sans-serif;
+}
+
 /* Classes */
 
 .bio > p {
     margin-right: 2rem;
+}
+
+.chinese {
+    font-family: 'Microsoft JhengHei UI', 'PingFang TC', 'SimHei', sans-serif;
 }
 
 .content-container {
@@ -86,14 +94,6 @@ footer > p {
 
 .heading {
     margin: 1rem 0 0;
-}
-
-.invisible {
-    display: none;
-    margin: 0;
-    position: absolute;
-    right: 35%;
-    z-index: 1;
 }
 
 .language > p {
