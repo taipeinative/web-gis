@@ -1,0 +1,207 @@
+/* External typefaces */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* Elements */
+body {
+    font-family: 'Ubuntu Mono', 'Courier New', Courier, monospace;
+    text-align: center;
+    margin: 0;
+}
+
+button {
+    font-family: inherit; 
+    cursor: pointer;
+}
+
+/* Classes */
+.arrow {
+    -webkit-user-select: none;
+    color: #3B6;
+    font-size: .7rem;
+    user-select: none;
+}
+
+.button-container {
+    margin: 1rem 0 0;
+}
+
+.canvas {
+    display: grid;
+    height: inherit;
+    grid-template-columns: repeat(3, 33.33%);
+    grid-template-rows: repeat(3, 33.33%);
+}
+
+.canvas-container {
+    background: #EEE;
+    border: .5rem solid #DDD;
+    border-radius: 5rem;
+    height: 20rem;
+    margin: .5rem auto 0;
+    padding: 1rem;
+    width: 30rem;
+}
+
+.counter {
+    -webkit-user-select: none;
+    background: #111;
+    box-shadow: 0 -.2rem #041;
+    color: #EEE;
+    height: 1rem;
+    overflow: hidden;
+    padding: .1rem;
+    text-align: right;
+    text-overflow: clip;
+    user-select: none;
+    width: 1rem;
+}
+
+.cro, .hor, .ver {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-rows: 20% 60% 20%;
+}
+
+.cro .road:nth-child(1) {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+}
+
+.cro .road:nth-child(2) {
+    grid-column: 2 / 3;
+    grid-row: 1 / 4;
+}
+
+.cro .road:nth-child(3) {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+}
+
+.current {
+    color: #24E
+}
+
+.green-bulb, .red-bulb, .yellow-bulb {
+    background: #111;
+    border-radius: .5rem;
+    box-shadow: 0 -.3rem #041;
+    height: 1rem;
+    width: 1rem;
+}
+
+.green-bulb.active {
+    background: #3B6;
+}
+
+.hidden {
+    display: none;
+}
+
+.hor .road {
+    grid-column: 1 / 4;
+    grid-row: 2 / 3;
+}
+
+.machine {
+    align-items: center;
+    background: #074;
+    display: flex;
+    float: left;
+    gap: .2rem;
+    padding: 0 .3rem;
+    width: min-content;
+}
+
+.machine:has(.green-bulb.active) .counter {
+    color: #3B6;
+}
+
+.machine:has(.red-bulb.active) .counter {
+    color: #F00;
+}
+
+.module {
+    padding: .25rem 0;
+}
+
+.module:has(.green-bulb),
+.module:has(.red-bulb),
+.module:has(.yellow-bulb) {
+    padding: .35rem 0;
+}
+
+.option {
+    width: 21.3rem;
+}
+
+.option * {
+    display: block;
+    float: left;
+}
+
+.option input {
+    font-family: inherit;
+    text-align: end;
+    width: 2rem;
+}
+
+.option label {
+    width: 15rem;
+}
+
+.option span {
+    padding-left: .3rem;
+}
+
+.option-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+    text-align: left;
+}
+
+.phase-list {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    text-align: left;
+    width: max-content;
+}
+
+.red-bulb.active {
+    background: #F00;
+}
+
+.road {
+    align-items: center;
+    background: #888;
+    display: flex;
+    justify-content: center;
+}
+
+.sig {
+    align-items: center;
+    background: #EEE;
+    border: .05rem solid #AAA;
+    border-radius: .75rem;
+    display: flex;
+    height: min-content;
+    padding: .2rem .2rem .2rem .5rem;
+    width: min-content;
+}
+
+.sig h4 {
+    float: left;
+    margin: 0 .5rem;
+    width: max-content;
+}
+
+.ver .road {
+    grid-column: 2 / 3;
+    grid-row: 1 / 4;
+}
+
+.yellow-bulb.active {
+    background: #FB1;
+}

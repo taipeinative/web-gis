@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <!-- Metadata -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Title -->
+        <title>Week 4 - Crossroad Signal Simulator</title>
+
+        <!-- Stylesheet-->
+        <link rel="stylesheet" type="text/css" href="style.css" />
+
+        <!-- JavaScript -->
+        <script
+            src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous">
+        </script>
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <h1>Crossroad Signal Simulator</h1>
+        <div class="canvas-container">
+            <div class="canvas"></div>
+        </div>
+        
+        <div class="button-container">
+            <button id="start" title="Start simulation" type="button">Start</button>
+            <button id="skip" title="Skip current phase" type="button">Skip</button>
+            <button id="stop" title="Stop simulation" type="button" disabled>Stop</button>
+            <button id="reset" title="Reset simulation" type="button">Reset</button>
+        </div>
+
+        <h2>Phase Settings</h2>
+
+        <div class="option-container">
+            <div class="option">
+                <label for="duration">Phase duration</label>
+                <input id="duration"
+                   title="Duration of each phase"
+                   type="text"
+                   inputmode="numeric"
+                   pattern="\d+(?:\.\d+|$)"
+                   placeholder="10"
+                   value="10" />
+                <span class="unit">seconds</span>
+            </div>
+            <div class="option">
+                <label for="leftTurn">Protected left turn duration</label>
+                <input id="leftTurn"
+                   title="Duration of protected left turn"
+                   type="text"
+                   inputmode="numeric"
+                   pattern="\d+"
+                   placeholder="5"
+                   value="5" />
+                <span class="unit">seconds</span>
+            </div>
+        </div>
+
+        <h2>Phase List</h2>
+        <ol class="phase-list">
+            <li>N-S</li> 
+            <li>N-S (left turn)</li>
+            <li>E-W</li>
+            <li>E-W (left turn)</li>
+        </ol>
+
+    </body>
+</html>
