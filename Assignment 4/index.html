@@ -27,21 +27,20 @@
         
         <div class="button-container">
             <button id="start" title="Start simulation" type="button">Start</button>
-            <button id="skip" title="Skip current phase" type="button">Skip</button>
             <button id="stop" title="Stop simulation" type="button" disabled>Stop</button>
             <button id="reset" title="Reset simulation" type="button">Reset</button>
         </div>
 
-        <h2>Phase Settings</h2>
+        <h2>Phase Settings (Experiemental)</h2>
 
         <div class="option-container">
             <div class="option">
-                <label for="duration">Phase duration</label>
+                <label for="duration">Green light duration</label>
                 <input id="duration"
                    title="Duration of each phase"
                    type="text"
                    inputmode="numeric"
-                   pattern="\d+(?:\.\d+|$)"
+                   pattern="\d+"
                    placeholder="10"
                    value="10" />
                 <span class="unit">seconds</span>
@@ -58,13 +57,18 @@
                 <span class="unit">seconds</span>
             </div>
         </div>
+        <p>Please note that the duration changes will not be completely reflected until a full cycle finishes.</p>
 
         <h2>Phase List</h2>
         <ol class="phase-list">
-            <li>N-S</li> 
+            <li class="current">N-S (green)</li>
+            <li>N-S (yellow) [2 sec]</li>
             <li>N-S (left turn)</li>
-            <li>E-W</li>
+            <li>Signal clearance interval [2 sec]</li>
+            <li>E-W (green)</li>
+            <li>E-W (yellow) [2 sec]</li>
             <li>E-W (left turn)</li>
+            <li>Signal clearance interval [2 sec]</li>
         </ol>
 
     </body>

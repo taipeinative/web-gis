@@ -78,7 +78,15 @@ button {
 }
 
 .current {
-    color: #24E
+    color: #24E;
+    font-weight: 700;
+    position: relative;
+}
+
+.current::before {
+    content: '>';
+    left: -1rem;
+    position: absolute;
 }
 
 .green-bulb, .red-bulb, .yellow-bulb {
