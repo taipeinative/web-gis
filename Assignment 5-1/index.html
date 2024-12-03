@@ -24,8 +24,9 @@
         <p>Enter the detail of your expenses, and you can get the summary of them. Although your data is secure ™, please <b>do not</b> upload the sensitive data.</p>
         <h2>Options</h2>
         <div class="optionsContainer">
-            <button id="upload">Upload JSON</button>
-            <button id="download">Download JSON</button>
+            <button id="uploadBtn" title="Upload JSON">Upload JSON</button>
+            <button id="download" title="Download JSON">Download JSON</button>
+            <input  id="upload" title="Upload JSON" type="file" accept=".json" class="hidden" />
         </div>
         <h2>New Record</h2>
         <div id="newRecordContainer">
@@ -35,7 +36,7 @@
             </div>
             <div class="inputGroup">
                 <label for="amount">Amount</label>
-                <input id="amount" title="Enter the amount" type="text" placeholder="70" inputmode="numeric">
+                <input id="amount" title="Enter the amount" type="text" placeholder="70" inputmode="numeric" />
                 <span>$</span>
             </div>
             <div class="inputGroup">
@@ -44,7 +45,7 @@
             </div>
             <div class="inputGroup">
                 <label for="memo">Memo</label>
-                <input id="memo" title="Enter the memo" type="text" placeholder="Disgusting. Never buying again.">
+                <input id="memo" title="Enter the memo" type="text" placeholder="Disgusting. Never buying again." />
             </div>
             <button title="Add new record" type="submit">Add</button>
         </div>

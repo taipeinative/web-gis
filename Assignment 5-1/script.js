@@ -7,11 +7,11 @@ class AJAX {
      */
     static downloadRecords() {
         $.ajax({
-            url: 'server.php?action=download',
+            url: './server.php?action=download',
             method: 'GET',
             success: function (data) {
                 const tempAnchor = document.createElement('a');
-                const blobURL = window.URL.createObjectURL(new Blob([data], {type: 'application/json'}));
+                const blobURL = window.URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'}));
                 tempAnchor.classList.add('hidden');
                 tempAnchor.href = blobURL;
                 tempAnchor.target = '_self',
@@ -33,14 +33,87 @@ class AJAX {
      * Sync local records with server records.
      */
     static pullRecords() {
-
+        $.ajax({
+            url: './server.php?action=pull',
+            method: 'GET',
+            success: function (data) {
+                syncRecords(data);
+                console.log('Pull successfully.');
+            },
+            error: function (xhr, status, err) {
+                console.log('Error:', status, err);
+            }
+        });
     }
 
     /**
-     * Sync server records with local records. 
+     * Sync server records with local records. Also used in the upload action.
      */
     static pushRecords() {
+        const localRecords = JSON.stringify(recordArray.map(v => v.getJSON()));
+        $.ajax({
+            url: './server.php?action=push',
+            method: 'POST',
+            data: localRecords,
+            contentType: 'application/json',
+            success: function (res) {
+                console.log('Push successfully.');
+            },
+            error: function (xhr, status, err) {
+                console.log('Error:', status, err);
+            }
+        });
+    }
+}
 
+/**
+ * The class for handling encoding problems.
+ */
+class Encoding {
+    /**
+     * @type {Object<string, string>} The object for escaping the HTML encoding.
+     */
+    static escapeMap = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;',
+        '/': '&#x2F;',
+        '`': '&#x60;',
+        '=': '&#x3D;'
+    };
+
+    /**
+     * @type {Object<string, string>} The object for unescaping the HTML encoding.
+     */
+    static unescapeMap = {
+        '&amp;': '&',
+        '&lt;': '<',
+        '&gt;': '>',
+        '&quot;': '"',
+        '&#39;': "'",
+        '&#x2F;': '/',
+        '&#x60;': '`',
+        '&#x3D;': '='
+    };
+
+    /**
+     * Replaces the special characters with HTML-escaped characters.
+     * @param {string} text - The unsanitized text.
+     * @returns {string} The sanitized, HTML safe text.
+     */
+    static sanitizeHTML(text) {
+        return text.replace(/[&<>"'`=\/]/ig, m => (Encoding.escapeMap[m]));
+    }
+
+    /**
+     * Replaces the HTML-escaped characters with its original characters.
+     * @param {string} text - The sanitized text.
+     * @returns {string} Original text.
+     */
+    static desanitizeHTML(text) {
+        return text.replace(/&(amp|lt|gt|quot|#39|#x2F|#x60|#x3D);/g, m => this.unescapeMap[m] || m);
     }
 }
 
@@ -57,35 +130,10 @@ class Record {
      * @param {string} memo - Additional information.
      */
     constructor(caption, amount, date, memo) {
-        
-        /**
-         * Removes the html characters from the string.
-         * @param {string} text - The unsanitized text.
-         * @returns {string} The sanitized, HTML safe text.
-         */
-        const sanitizeHTML = text => {
-            
-            /**
-             * @type {object} The replace items.
-             */
-            const escapeMap = {
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#39;',
-                '/': '&#x2F;',
-                '`': '&#x60;',
-                '=': '&#x3D;'
-            };
-
-            return text.replace(/[&<>"'`=\/]/ig, m => (escapeMap[m]));
-        };
-
-        this.caption = sanitizeHTML(caption);
+        this.caption = caption;
         this.amount = amount;
         this.date = date;
-        this.memo = sanitizeHTML(memo);
+        this.memo = memo;
     }
 
     /**
@@ -108,10 +156,10 @@ class Record {
     getLiteral() {
         return `
             <tr>
-                <td>${this.caption}</td>
+                <td>${Encoding.sanitizeHTML(this.caption)}</td>
                 <td>${formatNumber(this.amount)}</td>
                 <td>${this.date.toLocaleString('en-US', {month: 'long'})} ${this.date.getDate()}, ${this.date.getFullYear()}</td>
-                <td>${this.memo}</td>
+                <td>${Encoding.sanitizeHTML(this.memo)}</td>
                 <td><button title="Delete record" class="delete">Delete</button></td>
             </tr>
         `;
@@ -155,6 +203,7 @@ const addNewRecord = () => {
     $('#date').val('2023-12-31');
     $('#memo').val('');
 
+    AJAX.pushRecords();
     calculateStatistics();
 };
 
@@ -196,8 +245,9 @@ const calculateStatistics = () => {
  * @param {HTMLButtonElement} button - The clicked button
  */
 const deleteRecord = (button) => {
-    $(button).parent().parent().remove();
-    recordArray.splice($(button).index(), 1);
+    recordArray.splice($(button).parent().parent().index(), 1);
+    $(button).parent().parent().remove(); 
+    AJAX.pushRecords();
     calculateStatistics();
 }
 
@@ -207,6 +257,53 @@ const deleteRecord = (button) => {
  * @returns {string} The formatted number with comma delimiters.
  */
 const formatNumber = (num) => new Intl.NumberFormat('en-US').format(num);
+
+/**
+ * Refresh the UI and sync the given data.
+ * @param {Array} data - The given data
+ */
+const syncRecords = (data) => {
+    if (data instanceof Array) {
+
+        let sanitizedData = [];
+
+        for (const entry of data) {
+            let caption = '';
+            let amount = 0;
+            let date = new Date('1970-01-01');
+            let memo = '';
+
+            if (entry.hasOwnProperty('caption')) {
+                if (typeof(entry['caption']) == 'string') {
+                    caption = entry['caption'];
+                }
+            }
+            if (entry.hasOwnProperty('amount')) {
+                if (typeof(entry['amount']) == 'number') {
+                    amount = entry['amount'];
+                }
+            }
+            if (entry.hasOwnProperty('date')) {
+                date = new Date(entry['date']);
+            }
+            if (entry.hasOwnProperty('memo')) {
+                if (typeof(entry['memo']) == 'string') {
+                    memo = entry['memo'];
+                }
+            }
+
+            sanitizedData.push(new Record(caption, amount, date, memo));
+        }
+
+        document.getElementsByTagName('tbody')[0].innerText = '';
+        recordArray = sanitizedData;
+        sanitizedData.forEach(v => $('tbody').append(v.getLiteral()));
+        $('.delete').on('click', function() {   // Note that arrow function can not be used with 'this' keyword
+            deleteRecord($(this).get(0));
+        });
+        calculateStatistics();
+    }
+}
 
 /**
  * Validate the user input to make sure the wrong input will not be sent back.
@@ -232,19 +329,9 @@ const validateNumber = (textField) => {
 
 // Shorhand function for $(document).ready();
 $(() => {
-    /**
-     * @type {Array<Record>} Pre-defined records.
-     */
-    const predefined = [
-        new Record('Sneakers', 2450, new Date('2024-07-16'), 'Nice price.'),
-        new Record('Cup Noodles', 220, new Date('2024-08-20'), 'The worst thing I\'ve ever ordered.')
-    ];
 
-    // Add predefined data.
-    for (const item of predefined) {
-        $('tbody').append(item.getLiteral());
-        recordArray.push(item);
-    }
+    // Pull server data
+    AJAX.pullRecords();
 
     // Add event listeners
     $('button[type=\"submit\"]').on('click', () => {
@@ -256,8 +343,37 @@ $(() => {
     $('#download').on('click', () => {
         AJAX.downloadRecords();
     });
-    $('.delete').on('click', function() {   // Note that arrow function can not be used with 'this' keyword
-        deleteRecord($(this).get(0));
+    $('#upload').on('change', function() {
+        const files = this.files;
+
+        if (files.length == 0) {
+            console.log('No file selected.');
+        }
+
+        if (files[0].type != 'application/json') {
+            console.log('Invalid file input.');
+        }
+
+        const fReader = new FileReader();
+
+        fReader.onload = function(e) {
+            try {
+                syncRecords(JSON.parse(e.target.result));
+                AJAX.pushRecords();
+                console.log('Upload successfully.');
+            } catch (err) {
+                console.log('Error', err);
+            }
+        }
+
+        fReader.onerror = () => {
+            console.error('Error occured when reading the file.');
+        };
+
+        fReader.readAsText(files[0]);
+    });
+    $('#uploadBtn').on('click', () => {
+        $('#upload').click();
     });
 
     calculateStatistics();
