@@ -32,12 +32,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $input = file_get_contents('php://input');
-    $decoded = json_decode($input, true);
+    if ($input === '[]') {
+        $decoded = $input;
+    } else {
+        $decoded = json_decode($input, true);
+    }
 
     if (isset($_GET['action']) && $_GET['action'] === 'push') {
         if ($decoded) {
-            file_put_contents($database, json_encode($decoded, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
-            echo json_encode(['success' => true]);
+            if ($decoded === '[]') {
+                file_put_contents($database, $decoded);
+                echo json_encode(['success' => true]);
+            } else {
+                file_put_contents($database, json_encode($decoded, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+                echo json_encode(['success' => true]);
+            }
         } else {
             http_response_code(400);
             echo json_encode(['error' => 'Invalid data']);

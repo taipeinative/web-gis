@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <!-- Metadata -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- Title -->
+        <title>Week 14 - Opendata Visualizer</title>
+
+        <!-- Stylesheet-->
+        <link rel="stylesheet" type="text/css" href="style.css" />
+
+        <!-- JavaScript -->
+        <script
+         src="https://code.jquery.com/jquery-3.7.1.min.js"
+         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+         crossorigin="anonymous">
+        </script>
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <h1>Stock Price Chart</h1>
+        <p>The following chart shows <a href="https://data.gov.tw/dataset/31899">monthly international major stock prices</a>, provided by Bureau of Labor Funds, Ministry of Labor, through data.gov.tw. This example utilize AJAX call to query data and retrieve the result.</p>
+        <div>
+            <div class="selectorGroup">
+                <label for="source">Data source:</label>
+                <select id="source" title="Choose the data source">
+                    <option>Local</option>
+                    <option>API</option>
+                </select>
+            </div>
+            <div class="selectorGroup">
+                <label for="dateAfter">After:</label>
+                <input id="dateAfter" title="Select the date" type="date" />
+            </div>
+            <div class="selectorGroup">
+                <label for="dateBefore">Before:</label>
+                <input id="dateBefore" title="Select the date" type="date" />
+            </div>
+            <div class="selectorGroup">
+                <label for="stock">Show only:</label>
+                <select id="stock" title="Choose the stock">
+                    <option>(All)</option>
+                    <option>🇺🇸 Nasdaq</option>
+                    <option>🇺🇸 Dow</option>
+                    <option>🇬🇧 FTSE 100</option>
+                    <option>🇯🇵 NI225</option>
+                    <option>🇰🇷 KOSPI</option>
+                    <option>🇹🇼 TAIEX</option>
+                    <option>🇹🇼 TPEX</option>
+                    <option>🇨🇳 SSE</option>
+                    <option>🇭🇰 HSI</option>
+                    <option>🇸🇬 STI</option>
+                </select>
+            </div>
+        </div>
+    </body>
+</html>
