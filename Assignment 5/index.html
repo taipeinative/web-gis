@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <!-- Metadata -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Title -->
+        <title>Week 14 - Simple Expense Logger Plus</title>
+
+        <!-- Stylesheet-->
+        <link rel="stylesheet" type="text/css" href="style.css" />
+
+        <!-- JavaScript -->
+        <script
+         src="https://code.jquery.com/jquery-3.7.1.min.js"
+         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+         crossorigin="anonymous">
+        </script>
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <h1>Simple Expense Logger <span class="highlight">Plus</span></h1>
+        <p>Enter the detail of your expenses, and you can get the summary of them. Although your data is secure ™, please <b>do not</b> upload the sensitive data.</p>
+        <h2>Options</h2>
+        <div class="optionsContainer">
+            <button id="upload">Upload JSON</button>
+            <button id="download">Download JSON</button>
+        </div>
+        <h2>New Record</h2>
+        <div id="newRecordContainer">
+            <div class="inputGroup">
+                <label for="caption">Caption</label>
+                <input id="caption" title="Enter the caption" type="text" placeholder="Bubble tea">
+            </div>
+            <div class="inputGroup">
+                <label for="amount">Amount</label>
+                <input id="amount" title="Enter the amount" type="text" placeholder="70" inputmode="numeric">
+                <span>$</span>
+            </div>
+            <div class="inputGroup">
+                <label for="date">Date</label>
+                <input id="date" title="Select the date" type="date" value="2023-12-31">
+            </div>
+            <div class="inputGroup">
+                <label for="memo">Memo</label>
+                <input id="memo" title="Enter the memo" type="text" placeholder="Disgusting. Never buying again.">
+            </div>
+            <button title="Add new record" type="submit">Add</button>
+        </div>
+        <h2>Existing Records</h2>
+        <div class="tableContainer">
+            <table id="existingRecordContainer">
+                <thead>
+                    <tr>
+                        <th scope="col">Caption</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Memo</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <h2>Statistics</h2>
+        <div class="statisticGroup">
+            <b>Count</b><span id="statCount"></span>
+        </div>
+        <div class="statisticGroup">
+            <b>Sum</b><span id="statSum"></span>
+        </div>
+        <div class="statisticGroup">
+            <b>Mean</b><span id="statMean"></span>
+        </div>
+        <div class="statisticGroup">
+            <b>Median</b><span id="statMedian"></span>
+        </div>
+    </body>
+</html>
