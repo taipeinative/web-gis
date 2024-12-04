@@ -12,12 +12,13 @@
         <link rel="stylesheet" type="text/css" href="style.css" />
 
         <!-- JavaScript -->
+        <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
         <script
          src="https://code.jquery.com/jquery-3.7.1.min.js"
          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
          crossorigin="anonymous">
         </script>
-        <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
         <script src="script.js"></script>
     </head>
     <body>
@@ -50,7 +51,7 @@
                         <box-icon type='solid' name='detail' color='#666' size="sm" title="Detail"></box-icon>
                         <h3>Detail</h3>
                     </div>
-                    <p>After the filters are applied, the client will send a request to query the data on the server. The website than passes data to Plotly to make a line chart.</p>
+                    <p>After the filters are applied, the client will send a request to query the data on the server. The website than passes data to D3.js to make a line chart.</p>
                 </div>
                 <div class="propertyGroup">
                     <div>
@@ -73,9 +74,8 @@
                     <input id="dateBefore" title="Select the date" type="month" />
                 </div>
                 <div class="selectorGroup">
-                    <label for="stock">Show only:</label>
+                    <label for="stock">Stock:</label>
                     <select id="stock" title="Choose the stock">
-                        <option>(All)</option>
                         <option>🇺🇸 Nasdaq</option>
                         <option>🇺🇸 Dow</option>
                         <option>🇬🇧 FTSE 100</option>
