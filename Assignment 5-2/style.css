@@ -1,12 +1,143 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Color+Emoji&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Noto+Color+Emoji&display=swap');
 
 /* Elements */
 
 a {
-    color: #0d6efd;
+    color: #0D6EFD;
     text-decoration: none;
+    transition: color .3s;
+}
+
+a:hover {
+    color: #4F92F7;
+}
+
+body {
+    margin: 0;
 }
 
 body * {
     font-family: 'Fira Sans', 'Noto Color Emoji', 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 500;
+}
+
+select {
+    width: 5rem;
+}
+
+/* Classes */
+
+.filterContainer,
+.graphContainer {
+    display: flex;
+    flex-direction: column;
+    margin: .5rem 1rem 1rem;
+}
+
+.filterContainer,
+.filterContainer *,
+.graphContainer {
+    color: #555;
+}
+
+.filterContainer > h2,
+.graphContainer > h2 {
+    font-size: 1.25rem;
+    margin: 0 1rem;
+}
+
+.hidden.propertyContainer {
+    display: none;
+    opacity: 0;
+}
+
+.infoCard {
+    background: #EDEDED;
+    border-radius: 1rem;
+    color: #555;
+    margin: 1rem;
+    margin-bottom: .5rem;
+    overflow: auto;
+    padding: .5rem 1rem;
+    user-select: none;
+}
+
+.infoCard > h1 {
+    color: #221d1d;
+    margin: 0;
+}
+
+.infoCard > p {
+    margin: .3rem 0;
+}
+
+.propertyContainer {
+    display: flex;
+    flex-direction: column;
+    margin: .8rem 1rem .5rem;
+    row-gap: .5rem;
+    transition: opacity .3s;
+}
+
+.propertyContainer .propertyGroup:not(:last-child) {
+    border-bottom: 1px #888 solid;
+    padding-bottom: .5rem;
+}
+
+.propertyGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.propertyGroup > div {
+    align-items: center;
+    display: flex;
+}
+
+.propertyGroup > div > box-icon + h3,
+.propertyGroup > div > box-icon + h4 {
+    display: inline;
+    margin: 0 0 0 .2rem;
+}
+
+.propertyGroup > div + p {
+    margin: 0 0 0 1.76rem;
+}
+
+.selectorContainer {
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+    justify-content: center;
+    margin: .5rem 1rem;
+    row-gap: .3rem;
+    user-select: none;
+}
+
+/* IDs */
+
+#detailBanner {
+    color: #E92;
+}
+
+/* RWD */
+
+@media (max-width: 450px) {
+    .filterContainer,
+    .graphContainer {
+        text-align: center;
+    }
+    
+    .selectorContainer {
+        flex-direction: column;
+    }
 }

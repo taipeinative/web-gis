@@ -17,43 +17,81 @@
          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
          crossorigin="anonymous">
         </script>
+        <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
         <script src="script.js"></script>
     </head>
     <body>
-        <h1>Stock Price Chart</h1>
-        <p>The following chart shows <a href="https://data.gov.tw/dataset/31899">monthly international major stock prices</a>, provided by Bureau of Labor Funds, Ministry of Labor, through data.gov.tw. This example utilize AJAX call to query data and retrieve the result.</p>
-        <div>
-            <div class="selectorGroup">
-                <label for="source">Data source:</label>
-                <select id="source" title="Choose the data source">
-                    <option>Local</option>
-                    <option>API</option>
-                </select>
+        <section class="infoCard">
+            <h1>Stock Price Chart</h1>
+            <p>This example utilizes AJAX calls to query data and retrieve the result.</p>
+            <div class="propertyGroup">
+                <div id="detailBanner">
+                    <box-icon type='solid' name='caret-down-circle' color='#E92' size="sm" title="Expand detail"></box-icon>
+                    <h4>Expand</h4>
+                </div>
             </div>
-            <div class="selectorGroup">
-                <label for="dateAfter">After:</label>
-                <input id="dateAfter" title="Select the date" type="date" />
+            <div class="propertyContainer hidden">
+                <div class="propertyGroup">
+                    <div>
+                        <box-icon type='solid' name='user-circle' color='#666' size="sm" title="Author"></box-icon>
+                        <h3>Author</h3>
+                    </div>
+                    <p><a href="https://github.com/taipeinative" title="Open author profile">Ho, Chang-Yu</a></p>
+                </div>
+                <div class="propertyGroup">
+                    <div>
+                        <box-icon type='solid' name='book' color='#666' size="sm" title="Dataset"></box-icon>
+                        <h3>Dataset</h3>
+                    </div>
+                    <p><a href="https://data.gov.tw/dataset/31899" title="Open source dataset website">Monthly international major stock prices</a></p>
+                </div>
+                <div class="propertyGroup">
+                    <div>
+                        <box-icon type='solid' name='detail' color='#666' size="sm" title="Detail"></box-icon>
+                        <h3>Detail</h3>
+                    </div>
+                    <p>After the filters are applied, the client will send a request to query the data on the server. The website than passes data to Plotly to make a line chart.</p>
+                </div>
+                <div class="propertyGroup">
+                    <div>
+                        <box-icon name='git-branch' color='#666' size="sm" title="Repository"></box-icon>
+                        <h3>Repository</h3>
+                    </div>
+                    <p><a href="https://github.com/taipeinative/web-gis/tree/main/Assignment%205-2" title="Open webpage repository">@taipeinative/web-gis</a> on GitHub</p>
+                </div>
             </div>
-            <div class="selectorGroup">
-                <label for="dateBefore">Before:</label>
-                <input id="dateBefore" title="Select the date" type="date" />
+        </section>
+        <section class="filterContainer">
+            <h2>Filters</h2>
+            <div class="selectorContainer">
+                <div class="selectorGroup">
+                    <label for="dateAfter">After:</label>
+                    <input id="dateAfter" title="Select the date" type="month" />
+                </div>
+                <div class="selectorGroup">
+                    <label for="dateBefore">Before:</label>
+                    <input id="dateBefore" title="Select the date" type="month" />
+                </div>
+                <div class="selectorGroup">
+                    <label for="stock">Show only:</label>
+                    <select id="stock" title="Choose the stock">
+                        <option>(All)</option>
+                        <option>🇺🇸 Nasdaq</option>
+                        <option>🇺🇸 Dow</option>
+                        <option>🇬🇧 FTSE 100</option>
+                        <option>🇯🇵 NI225</option>
+                        <option>🇰🇷 KOSPI</option>
+                        <option>🇹🇼 TAIEX</option>
+                        <option>🇹🇼 TPEX</option>
+                        <option>🇨🇳 SSE</option>
+                        <option>🇭🇰 HSI</option>
+                        <option>🇸🇬 STI</option>
+                    </select>
+                </div>
             </div>
-            <div class="selectorGroup">
-                <label for="stock">Show only:</label>
-                <select id="stock" title="Choose the stock">
-                    <option>(All)</option>
-                    <option>🇺🇸 Nasdaq</option>
-                    <option>🇺🇸 Dow</option>
-                    <option>🇬🇧 FTSE 100</option>
-                    <option>🇯🇵 NI225</option>
-                    <option>🇰🇷 KOSPI</option>
-                    <option>🇹🇼 TAIEX</option>
-                    <option>🇹🇼 TPEX</option>
-                    <option>🇨🇳 SSE</option>
-                    <option>🇭🇰 HSI</option>
-                    <option>🇸🇬 STI</option>
-                </select>
-            </div>
-        </div>
+        </section>
+        <section class="graphContainer">
+            <h2>Graph</h2>
+        </section>
     </body>
 </html>
