@@ -1,0 +1,38 @@
+<!-- 排行榜分頁 -->
+<div class="rankings-interface">
+    <nav>
+        <ul>
+            <li class="siteLogo"><a href="#welcome" class="navbarLink" title="首頁">測速照相收入地圖</a></li>
+            <li><a href="#map"     class="navbarLink" title="地圖">地圖</a></li>
+            <li><a href="#ranking" class="navbarLink" title="排行榜">排行榜</a></li>
+            <li><a href="#about"   class="navbarLink" title="關於">關於</a></li>
+        </ul>
+    </nav>
+    <div id="chart" class="rankingChart"></div>
+    <div id="tooltip" class="rankingTooltip"></div>
+    <div class="rankingList">
+        <div class="rankingListHeader">
+            <h2>收入前 25 名排行榜</h2>
+        </div>
+        <div class="rankingListSelector">
+            <span>年度</span>
+            <select id="rankingYearSelector" class="rankSelector" title="選擇年份">
+                <option value="All">全部</option>
+                <option value="2023">2023年</option>
+                <option value="2022">2022年</option>
+                <option value="2021">2021年</option>
+                <option value="2020">2020年</option>
+            </select>
+            <span>縣市</span>
+            <select id="rankingCitySelector" class="rankSelector" title="選擇縣市">
+                <option value="All">全部</option>
+                <option value="嘉義縣">嘉義縣</option>
+                <option value="臺南市">臺南市</option>
+            </select>
+            <button id="rankingDownloadData" class="rankDownload" title="下載資料">下載資料</button>
+        </div>
+        <div class="rankingListTable">
+            <ol class="rankingListContent"></ol>
+        </div>
+    </div>
+</div>

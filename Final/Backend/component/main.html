@@ -1,0 +1,82 @@
+<!-- 主介面 -->
+<div class="main-interface">
+    <!-- 選單 -->
+    <div class="menu">
+        <div class="optionsGroup">
+            <button class="menuCloseButton menuInitiator" title="關閉選單" tabindex="-1"><span class="material-icons-outlined">close</span></button>
+        </div>
+        <div class="optionsGroup">
+            <span class="menuTitle siteLogo">測速照相收入地圖</span>
+        </div>
+        <div class="optionsGroup">
+            <div class="layers menuContent">
+                <h2>基本底圖</h2>
+                <label><input id="layerEMAP" type="radio" name="baseLayer" checked>臺灣通用電子地圖</label>
+                <label><input id="layerORTHO" type="radio" name="baseLayer">正射影像（通用）</label>
+                <label><input id="layerOSM" type="radio" name="baseLayer">開放街圖（OSM）</label>
+            </div>
+        </div>
+        <div class="optionsGroup">
+            <div class="layers menuContent overlays">
+                <h2>套疊圖層</h2>
+                <label><input id="layerCAMERA" type="checkbox" checked>測速照相點位</label>
+                <label><input id="layerACCIDENT" type="checkbox">超速事故點位</label>
+            </div>
+        </div>
+        <div class="optionsGroup">
+            <div class="layers menuContent">
+                <h2>顯示設定</h2>
+                <label><input id="optionNoData" type="checkbox">顯示無資料的測速照相</label>
+                <label><input id="optionSpeedLimit" type="checkbox">顯示速限標籤</label>
+                <label><input id="optionIncomeSize" type="checkbox" checked>使用圓圈大小顯示收入</label>
+                <label><input id="optionDesaturate" type="checkbox">使用低飽和度的底圖</label>
+            </div>
+        </div>
+        <div class="optionsGroup">
+            <div class="menuContent menuLinks">
+                <h2>其他連結</h2>
+                <a href="#welcome" class="menuLink" title="首頁">首頁</a>
+                <a href="#ranking" class="menuLink" title="排行榜">排行榜</a>
+                <a href="#about" class="menuLink" title="關於">關於</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主要內容 -->
+    <div class="mainScreen">
+        <div class="mainScreenFilter menuInitiator" title="點擊背景關閉選單"></div>
+        <div class="controlBox">
+            <button class="mapZoomInButton" title="放大地圖">+</button>
+            <button class="mapZoomOutButton" title="縮小地圖">-</button>
+        </div>
+        <div class="infoBox">
+            <h3 id="cameraAddress">地址</h3>
+            <div class="infoBoxGroup infoFirstRow">
+                <p id="cameraDirection">方向</p>
+                <p id="cameraType">形式</p>
+            </div>
+            <div class="infoBoxGroup infoSecondRow">
+                <p id="cameraSpeedLimit" class="speedLimit">速限</p>
+                <p>2020～2023收入</p>
+                <p id="cameraIncome" class="incomeNumber">數字</p>
+            </div>
+        </div>
+        <div class="legendBox">
+            <button title="圖例">圖例</button>
+            <ul>
+                <li class="legendCamera legendIcon">測速照相點位</li>
+                <li class="legendCameraNodata legendIcon">測速照相點位（無資料）</li>
+                <li class="legendAccidentA1 legendIcon">超速事故（A1）點位</li>
+                <li class="legendAccidentA2 legendIcon">超速事故（A2）點位</li>
+            </ul>
+        </div>
+        <div class="searchBox">
+            <button class="menuButton menuInitiator" title="選單"><span class="material-icons-outlined">menu</span></button>
+            <div class="autocompleteBox">
+                <input id="q" title="搜尋內容" type="text" placeholder="搜尋……" />
+                <ul class="autocompleteList"></ul>
+            </div>
+        </div>
+        <div id="map" class="map"></div>
+    </div>
+</div>

@@ -1,0 +1,991 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&family=Poppins:wght@400;600&display=swap');
+
+/* 整體樣式 */
+body {
+    margin: 0;
+    font-family: 'Noto Sans TC', Arial, sans-serif;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+button {
+    cursor: pointer;
+}
+
+:root {
+    --background: #FFF;
+    --background-transparent: #FFFFFFB8;
+    --background-dim-1: #F9F9F9;
+    --background-dim-2: #F5F5F5;
+    --background-dim-3: #F0F8FF;
+    --background-dim-4: #E9E9E9;
+    --background-dim-5: #E6E6E6;
+    --background-dim-5-transparent: #E6E6E6B8;
+    --background-dim-6: #DDD;
+    --background-dim-7: #CCC;
+    --background-dim-8: #888;
+    --link: #007BFF;
+    --link-highlight: #A9D3FF;
+    --link-highlight-dim: #5EA4FB;
+    --focus-transparent: #007BFF66;
+    --shadow: #0000001A;
+    --shadow-dim: #00000033;
+    --sky: #ACC1DC;
+    --text: #333;
+    --text-bright-1: #555;
+    --text-bright-2: #666;
+    --text-dim-1: #111;
+    --text-dim-2: #000;
+    --warning-red: #F00;
+}
+
+/* 網站圖案 */
+.siteLogo {
+    margin-left: 1.5rem;
+}
+
+.siteLogo::before {
+    background-image: url('./image/logo.png');
+    background-size: cover;
+    content: ' ';
+    display: inline-block;
+    height: 3rem;
+    width: 3rem;
+}
+
+/* 圖示 */
+.material-icons-outlined {
+    user-select: none;
+}
+
+/* ==效果== */
+/* 效果－浮現－啟動前 */
+.effectEmerge {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: font-size .3s ease, margin .3s ease, opacity .5s ease, transform .5s ease;
+}
+
+/* 效果－浮現－啟動後 */
+.effectEmerge.fire {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==歡迎== */
+/* 歡迎－頁尾 */
+footer {
+    margin-top: auto;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+}
+
+/* 歡迎－按鈕容器 */
+.buttonLinks {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.buttonLinks button:hover {
+    color: var(--link-highlight);
+}
+
+/* 歡迎－封面地圖 */
+.coverMap {
+    height: 30rem;
+    width: 100%;
+    z-index: 2;
+}
+
+/* 歡迎－導覽列連結 */
+.navbarLink {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* 歡迎－頁面容器 */
+.welcome-interface {
+    align-items: center;
+    background-color: var(--background-dim-2);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* 歡迎－導覽列 */
+.welcome-interface nav {
+    align-self: flex-start;
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: 3;
+}
+
+.welcome-interface nav > ul {
+    align-items: center;
+    display: flex;
+    color: var(--background-dim-3);
+    flex-direction: row;
+    font-size: 1.25rem;
+    gap: 1.25rem;
+    list-style-type: none;
+    margin: 0;
+    margin-inline: 0;
+    padding-inline: 0;
+    position: relative;
+    transition: color .3s ease, font-size .3s ease;
+}
+
+.welcome-interface nav > ul > li {
+    align-items: center;
+    display: flex;
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity .3s ease, transform .3s ease;
+}
+
+/* 歡迎－縣市選項 */
+.welcome-interface button {
+    border: none;
+    background-color: transparent;
+    color: var(--link);
+    font-size: 1.25rem;
+    padding: .5rem 0;
+    transition: color .2s;
+}
+
+.welcome-interface h1 {
+    font-size: 2rem;
+}
+
+/* ==地圖== */
+/* 地圖－自動完成字串提示框容器 */
+.autocompleteBox {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+}
+
+/* 地圖－自動完成字串提示框 */
+.autocompleteList {
+    background-color: var(--background);
+    border: none;
+    border-radius: 0 0 .5rem .5rem;
+    box-shadow: 0 2px 8px var(--shadow);
+    left: 0;
+    list-style: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    width: calc(100% - 1rem);
+    z-index: 5;
+}
+
+.autocompleteList li {
+    color: var(--text);
+    cursor: pointer;
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.autocompleteList li:hover,
+.autocompleteList li:focus {
+    background-color: var(--background-dim-5);
+    color: var(--link);
+    outline: none;
+}
+
+.autocompleteList li:active {
+    background-color: var(--link);
+    color: var(--background);
+}
+
+/* 地圖－縮放按鈕 */
+.controlBox {
+    bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    position: absolute;
+    right: 2rem;
+    transition: bottom .2s ease;
+    user-select: none;
+    z-index: 3;
+}
+
+.controlBox button {
+    background-color: var(--background-dim-5);
+    border: none;
+    border-radius: 1.25rem;
+    box-shadow: 2px 0 8px var(--shadow-dim);
+    font-size: 1.25rem;
+    height: 2.5rem;
+    padding: 0;
+    transition: background-color .3s ease;
+    width: 2.5rem;
+}
+
+.controlBox button:hover {
+    background-color: var(--link-highlight-dim);
+}
+
+/* 地圖－收入數字 */
+.incomeNumber {
+    color: var(--link);
+    font-size: 1rem;
+    font-weight: 700;
+    justify-content: flex-end;
+    margin: 0;
+    text-align: right;
+}
+
+/* 地圖－資訊欄 */
+.infoBox {
+    backdrop-filter: blur(.5rem);
+    background-color: var(--background-dim-5-transparent);
+    border-radius: 1rem;
+    bottom: 2rem;
+    box-shadow: 2px 0 8px var(--shadow-dim);
+    display: flex;
+    flex-direction: column;
+    left: 2rem;
+    min-width: 16.5rem;
+    padding: .2rem .5rem;
+    position: fixed;
+    transform: translateY(200%);
+    transition: transform .3s ease;
+    z-index: 3;
+}
+
+.infoBox > h3 {
+    color: var(--text-dim-1);
+    font-size: 1rem;
+    margin: .5rem 0 .2rem;
+    max-width: 20rem;
+    overflow-x: hidden;
+    padding-left: .5rem;
+    text-overflow: ellipsis;
+    text-wrap-mode: nowrap;
+}
+
+.infoBox.fire {
+    transform: translateY(0%);
+}
+
+.infoBoxGroup {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    margin: 0 0 .3rem;
+    padding-left: .5rem;
+}
+
+.infoFirstRow {
+    gap: .5rem;
+}
+
+.infoFirstRow > p,
+.infoSecondRow > p:not(.incomeNumber, .speedLimit) {
+    color: var(--text-bright-1);
+    font-size: .8rem;
+    margin: 0;
+}
+
+.infoSecondRow {
+    gap: .6rem;
+}
+
+/* 地圖－選單選項 */
+.layers input[type="checkbox"],
+.layers input[type="radio"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+}
+
+/* 地圖－選單選項容器 */
+.layers label {
+    align-items: center;
+    background-color: var(--background);
+    border: 1px solid var(--background-dim-6);
+    border-radius: .5rem;
+    color: var(--text);
+    display: flex;
+    font-size: 1em;
+    margin: .2rem 0;
+    padding: .2rem .6rem;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.layers label:hover {
+    background-color: var(--background-dim-3);
+    box-shadow: 0 2px 5px var(--shadow);
+    cursor: pointer;
+}
+
+/* 地圖－圖例（超速事故-A1） */
+.legendAccidentA1::before {
+    background-image: url('./image/accident-triangle-a1.svg');
+}
+
+/* 地圖－圖例（超速事故-A2） */
+.legendAccidentA2::before {
+    background-image: url('./image/accident-triangle-a2.svg');
+}
+
+/* 地圖－圖例框 */
+.legendBox {
+    backdrop-filter: blur(.5rem);
+    background-color: var(--background-dim-5-transparent);
+    border-radius: 1rem;
+    box-shadow: 2px 0 8px var(--shadow-dim);
+    display: flex;
+    flex-direction: column;
+    padding: .2rem .5rem;
+    position: fixed;
+    right: 2rem;
+    transition: height .2s ease, width .2s ease;
+    top: 1rem;
+    z-index: 3;
+}
+
+.legendBox button {
+    background-color: transparent;
+    border: none;
+    color: var(--text);
+    display: none;
+    font-size: 1rem;
+    padding: .5rem;
+    transition: color .3s ease;
+}
+
+.legendBox button:hover {
+    color: var(--link);
+}
+
+.legendBox ul {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    margin: .5rem;
+    padding: 0;
+}
+
+/* 地圖－圖例（測速照相） */
+.legendCamera::before {
+    background-image: url('./image/camera-dot.svg');
+}
+
+/* 地圖－圖例（測速照相（無資料）） */
+.legendCameraNodata::before {
+    background-image: url('./image/camera-dot-nodata.svg');
+}
+
+/* 地圖－圖例圖示共同屬性 */
+.legendIcon {
+    align-items: center;
+    display: flex;
+    gap: .5rem;
+}
+
+.legendIcon::before {
+    background-size: cover;
+    content: ' ';
+    display: inline-block;
+    height: .8rem;
+    width: .8rem;
+}
+
+/* 地圖－主畫面濾鏡－啟動前 */
+.mainScreenFilter {
+    background: var(--shadow-dim);
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    transition: opacity 0.3s ease;
+    width: 100%;
+    z-index: 4;
+}
+
+/* 地圖－主畫面濾鏡－啟動後 */
+.menu.fire + .mainScreen > .mainScreenFilter {
+    opacity: 1;
+    pointer-events: inherit;
+}
+
+/* 地圖－地圖 */
+.map {
+    background-color: var(--background-dim-5);
+    height: 100vh;
+    overflow: hidden;
+    width: 100%;
+}
+
+/* 地圖－選單－啟動前 */
+.menu {
+    backdrop-filter: blur(.5rem);
+    background-color: var(--background-transparent);
+    box-shadow: 2px 0 8px var(--shadow);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    left: 0;
+    overflow-y: auto;
+    position: absolute;
+    top: 0;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    width: 20rem;
+    z-index: 5;
+}
+
+/* 地圖－選單－啟動後 */
+.menu.fire {
+    transform: translateX(0%);
+}
+
+/* 地圖－搜尋列選單按鈕 */
+.menuButton,
+.menuCloseButton {
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    color: var(--text-bright-2);
+    display: flex;
+    height: 2.5rem;
+    justify-content: center;
+    margin-left: .3rem;
+    width: 2.5rem;
+}
+
+.menuButton:hover,
+.menuCloseButton:hover {
+    color: var(--link);
+}
+
+/* 地圖－關閉選單按鈕 */
+.menuCloseButton {
+    margin-right: .2rem;
+}
+
+/* 地圖－選單內容 */
+.menuContent {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 .5rem 1rem;
+}
+
+.menuContent > h2 {
+    font-size: 1.1rem;
+    margin: 0 0 .2rem 0;
+}
+
+/* 地圖－選單連結 */
+.menuLink {
+    color: var(--link);
+    text-decoration: none;
+    transition: color .3s ease;
+}
+
+.menuLink:hover {
+    color: var(--link-highlight-dim);
+}
+
+/* 地圖－選單連結組 */
+.menuLinks {
+    gap: .5rem;
+}
+
+/* 地圖－選單標題 */
+.menuTitle {
+    align-items: center;
+    display: flex;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 0 .5rem 1rem;
+}
+
+/* 地圖－選單選項組 */
+.optionsGroup {
+    display: flex;
+    flex-direction: row;
+    padding-right: .5rem;
+}
+
+.optionsGroup:has(.menuCloseButton) {
+    justify-content: flex-end;
+}
+
+/* 地圖－搜尋列搜尋框 */
+.searchBox {
+    align-items: center;
+    background-color: var(--background-dim-5);
+    border-radius: 3rem;
+    box-shadow: 0 2px 8px var(--shadow);
+    color: var(--background-dim-8);
+    display: flex;
+    left: 2rem;
+    position: absolute;
+    top: 1rem;
+    z-index: 3;
+}
+
+.searchBox input {
+    background-color: inherit;
+    border: none;
+    border-left: var(--background-dim-8) solid .1rem;
+    border-radius: 0 3rem 3rem 0;
+    font-size: 1.1rem;
+    margin: .5rem 0;
+    outline: none;
+    padding: 0 .5rem;
+}
+
+.searchBox input:focus:not(:focus-visible) {
+    outline: initial;
+}
+
+.searchBox:has(input:focus) {
+    box-shadow: 0 2px 8px var(--focus-transparent);
+    outline: var(--link) solid .1rem;
+}
+
+.searchBox ::placeholder {
+    user-select: none;
+}
+
+.speedLimit {
+    align-items: center;
+    background-color: var(--background);
+    border: .3rem solid var(--warning-red);
+    border-radius: 50%;
+    color: var(--text-dim-1);
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin: 0;
+    min-width: 1.5rem;
+    height: 1.5rem;
+    justify-content: center;
+    padding: .1rem;
+    user-select: none;
+}
+
+/* ==排行榜== */
+/* 排行榜－下載資料按鈕 */
+.rankDownload {
+    background-color: var(--background-dim-1);
+    border: none;
+    border-radius: .25rem;
+    font-size: 1rem;
+    margin-left: auto;
+    padding: .25rem .4rem;
+    transition: background-color ease .2s;
+}
+
+.rankDownload:hover {
+    background-color: var(--link-highlight);
+}
+
+.rankDownloadAnchor {
+    display: none;
+}
+
+/* 排行榜－收入值 */
+.rankIncome {
+    color: var(--link);
+    font-size: 1em;
+    font-weight: bold;
+    text-align: right;
+    width: 40%;
+}
+
+/* 排行榜－容器 */
+.rankings-interface {
+    overflow-x: hidden;
+}
+
+/* 排行榜－導覽列 */
+.rankings-interface nav > ul {
+    align-items: center;
+    display: flex;
+    color: var(--text);
+    flex-direction: row;
+    font-size: 1.25rem;
+    font-weight: 600;
+    gap: 1.25rem;
+    list-style-type: none;
+    margin: 0;
+    margin-inline: 0;
+    padding-inline: 0;
+    position: relative;
+    transition: color .3s ease, font-size .3s ease;
+}
+
+.rankings-interface nav > ul > li {
+    align-items: center;
+    display: flex;
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity .3s ease, transform .3s ease;
+}
+
+/* 排行榜－圖表容器 */
+.rankingChart {
+    background-color: var(--background-dim-5);
+    height: 30rem;
+    margin-top: .5rem;
+    overflow: auto;
+    padding: 1rem;
+    text-align: center;
+    user-select: none;
+}
+
+/* 排行榜－列表容器 */
+.rankingList {
+    background-color: var(--background-dim-4);
+    border-radius: 1rem;
+    box-shadow: 0 2px 5px var(--shadow);
+    margin: 1rem auto;
+    max-width: 70rem;
+    padding: .3rem 2rem;
+}
+
+/* 排行榜－列表內容容器 */
+.rankingListContent {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* 排行榜－排行榜標題 */
+.rankingListHeader > h2 {
+    margin: .3rem 0;
+}
+
+/* 排行榜－排行榜篩選器 */
+.rankingListSelector {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: .3rem;
+    margin-bottom: .5rem;
+}
+
+.rankingListSelector select + span {
+    margin-left: .5rem;
+}
+
+/* 排行榜－圖表懸浮標籤 */
+.rankingTooltip {
+    background-color: var(--background);
+    border: .1rem solid var(--background-dim-7);
+    font-size: .8rem;
+    opacity: 0;
+    overflow-x: hidden;
+    padding: .5rem;
+    pointer-events: none;
+    position: absolute;
+    user-select: none;
+}
+
+/* 排行榜－項目容器 */
+.rankItem {
+    align-items: center;
+    background-color: var(--background-dim-1);
+    border: .1rem solid var(--background-dim-7);
+    border-radius: .6rem;
+    cursor: pointer;
+    display: flex;
+    margin-bottom: .4rem;
+    padding: .4rem .8rem;
+}
+
+.rankItem:hover {
+    background-color: var(--background-dim-3);
+}
+
+/* 排行榜－地點 */
+.rankLocation {
+    color: var(--text-bright-1);
+    flex-grow: 1;
+    font-size: 1em;
+    text-align: left;
+}
+
+/* 排行榜－排名 */
+.rankNumber {
+    color: var(--text);
+    font-size: 1.2em;
+    font-weight: bold;
+    width: 10%;
+}
+
+/* 排行榜－篩選器 */
+.rankSelector {
+    border: .1rem solid var(--background-dim-7);
+    border-radius: .5rem;
+    font-size: 1rem;
+    padding: .2rem;
+}
+
+/* ==關於== */
+/* 關於－滑動條 */
+.about-interface {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+body:has(.about-interface)::-webkit-scrollbar {
+    display: none;
+}
+
+/* 關於－連結 */
+.about-interface article a {
+    color: var(--link);
+    text-decoration: none;
+    transition: color .3s ease;
+}
+
+.about-interface article a:hover {
+    color: var(--link-highlight-dim);
+}
+
+/* 關於－導覽列 */
+.about-interface nav > ul {
+    align-items: center;
+    display: flex;
+    color: var(--text);
+    flex-direction: row;
+    font-size: 1.25rem;
+    font-weight: 600;
+    gap: 1.25rem;
+    list-style-type: none;
+    margin: 0;
+    margin-inline: 0;
+    padding-inline: 0;
+    position: relative;
+    transition: color .3s ease, font-size .3s ease;
+}
+
+.about-interface nav > ul > li {
+    align-items: center;
+    display: flex;
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity .3s ease, transform .3s ease;
+}
+
+/* 關於－封面圖片 */
+.coverImage {
+    background-color: var(--sky);
+    background-image: url('./image/about.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 320px;
+    width: 100%;
+}
+
+/* 關於－分工描述 */
+.subtitle {
+    color: var(--background-dim-8);
+    font-size: smaller;
+}
+
+/* 關於－段落 */
+article {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-weight: 400;
+    text-align: center;
+}
+
+article:not(:last-of-type)::after {
+    color: var(--text-bright-2);
+    content: '．';
+    margin: 2rem 0;
+}
+
+/* 關於－段落標題 */
+article h2,
+article h3 {
+    font-weight: 400;
+}
+
+article h3 {
+    border: none;
+    border-bottom: .1rem solid var(--text);
+    color: var(--text-dim-1);
+    padding-bottom: .3rem;
+    margin: .8rem 0 .3rem;
+}
+
+/* 關於－大頭像樣式 */
+article  img {
+    border: none;
+    border-radius: 25%;
+    height: 20rem;
+    margin: 1rem 0 .5rem;
+}
+
+/* 關於－段落內容 */
+article > p {
+    margin: 0 15%;
+    transition: font-size .2s ease;
+}
+
+/* 關於－列表內容 */
+article > ul {
+    color: var(--text-bright-1);
+    list-style-type: none;
+    margin: .3rem 0;
+    padding: 0;
+    transition: font-size .3s ease;
+}
+
+article > ul li {
+    display: block;
+    margin-bottom: .1rem;
+}
+
+/* 回應式設計 */
+@media (max-width: 768px) {
+    article > p,
+    article > ul {
+        font-size: .8rem;
+    }
+
+    article > ul li {
+        padding: 0 20px;
+    }
+
+    nav > ul {
+        font-size: 1rem;
+    }
+
+    .legendBox button {
+        display: block;
+    }
+
+    .legendBox ul {
+        backdrop-filter: blur(.5rem);
+        background-color: var(--background-dim-5-transparent);
+        border-radius: 1rem;
+        box-shadow: 2px 0 8px var(--shadow-dim);
+        display: none;
+        flex-direction: column;
+        padding: .2rem .5rem;
+        position: fixed;
+        right: -0.5rem;
+        top: 3rem;
+        width: 15rem;
+    }
+
+    .legendBox ul.fire {
+        display: inherit;
+    }
+
+    .menu {
+        border-radius: 1.5rem;
+        bottom: 0;
+        height: 90vh;
+        margin: 5vh auto;
+        position: fixed;
+        right: 0;
+        transform: translateY(200%);
+        transition: transform 0.5s ease;
+        width: 80%;
+    }
+
+    .menu.fire {
+        transform: translateY(0%);
+    }
+    
+    .optionsGroup:has(.menuTitle) {
+        justify-content: center;
+    }
+
+    .siteLogo {
+        margin-left: 0.5rem;
+    }
+
+    .welcome-interface h1 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 460px) {
+    nav > ul > li:not(:first-child) {
+        opacity: 0;
+        position: absolute;
+        transform: translateX(-4rem);
+    }
+
+    .buttonLinks {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .controlBox {
+        bottom: 10rem;
+    }
+
+    .coverMap {
+        height: 0;
+    }
+    
+    .infoBox {
+        left: 10vw;
+        width: 80vw;
+    }
+
+    .legendBox {
+        bottom: 16.5rem;
+        top: initial;
+    }
+
+    .legendBox ul {
+        top: -7.5rem;
+    }
+
+    .rankDownload {
+        margin-top: .8rem;
+    }
+
+    .rankingListSelector {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .rankingListSelector * {
+        margin-left: 0;
+    }
+
+    .welcome-interface button {
+        font-size: 1rem;
+    }
+
+    .welcome-interface h1 {
+        font-size: 1.25rem;
+        margin-top: 5rem;
+    }
+    
+    .welcome-interface nav > ul {
+        color: var(--text-dim-1);
+    }
+}
